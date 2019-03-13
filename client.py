@@ -1,10 +1,10 @@
 from eospy.eos_client import EosClient
-from check_sig import *
+from check_sig import check_sig
 
-class PSCAccount(EosClient):
+class PCSClient(EosClient):
    
-    def checkSecurity(self,symbol,tokenId):
-        return check_sig(symbol,tokenId,self.subprivatekey)
+    def check_security(self,symbol,tokenId):
+        return check_sig.check_sig(symbol,tokenId,self.subprivatekey)
                        
     def create(self,symbol,AGENT=False):
 

@@ -1,6 +1,6 @@
 from eospy.eos_client import EosClient
 
-class DEXManager(EosClient):
+class DEXClient(EosClient):
 
     def addsellobyid(self,sym,token_id,price,memo):
 
