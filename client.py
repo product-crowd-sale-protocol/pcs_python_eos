@@ -1,5 +1,7 @@
 from eospy.eos_client import EosClient
 from check_sig import check_sig
+from eospy.endpoints import CONTRACT 
+from eospy.transaction_builder import TransactionBuilder, Action
 
 class PCSClient(EosClient):
    
@@ -14,20 +16,20 @@ class PCSClient(EosClient):
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'create',self.account , self.permission, transfer_binargs),
+            Action(CONTRACT, 'create',CONTRACT , self.permission, binargs),
         ))
         return self.push_transaction(transaction, chain_id)
 
 
-    def issue(self,quantity,memo,AGENT=False):
+    def issue(self,given_user,quantity,memo,AGENT=False):
 
         binargs = self.chain_abi_json_to_bin({
-            "code": CONTRACT, "action": "create",
-            "args": {"issuer": self.account, "quantity": quantity,"memo":memo}
+            "code": CONTRACT, "action": "issue",
+            "args": {"user": given_user, "quantity": quantity,"memo":memo}
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'issue',self.account, self.permission, transfer_binargs),
+            Action(CONTRACT, 'issue', self.account, self.permission, binargs),
         ))
 
         return self.push_transaction(transaction, chain_id)
@@ -38,13 +40,13 @@ class PCSClient(EosClient):
             "code": CONTRACT, "action": "transferbyid",
             "args": {"from": self.account, 
                      "to": to,
-                     "symbol": symbol,
+                     "sym": symbol,
                      "token_id":token_id,
                      "memo":memo}
             })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'transferbyid',self.account, self.permission, transfer_binargs),
+            Action(CONTRACT, 'transferbyid',self.account, self.permission, binargs),
         ))
         return self.push_transaction(transaction, chain_id)
 
@@ -52,11 +54,11 @@ class PCSClient(EosClient):
     def refreshkey(self,symbol,token_id,new_subkey,AGENT=False):
     
         binargs = self.chain_abi_json_to_bin({
-            "code": CONTRACT, "action": "create",
-            "args": {"symbol":symbol,"token_id":token_id , "subkey": new_subkey}
+            "code": CONTRACT, "action": "refreshkey",
+            "args": {"sym":symbol,"token_id":token_id , "subkey": new_subkey}
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'refreshkey',self.account, self.permission, transfer_binargs),
+            Action(CONTRACT, 'refreshkey',self.account, self.permission, binargs),
         ))
         return self.push_transaction(transaction, chain_id)

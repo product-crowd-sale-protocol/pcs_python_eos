@@ -16,7 +16,7 @@ from .transaction_builder import TransactionBuilder, Action
 
 
 class EosClient:
-    def __init__(self, api_endpoint=None, wallet_endpoint=None,subkey=None,subprivatekey=None):
+    def __init__(self, api_endpoint=None, wallet_endpoint=None,account=None,permission=None,subkey=None,subprivatekey=None):
         '''
         THIS IS SPARTA
 
@@ -28,6 +28,8 @@ class EosClient:
 
         self.api_endpoint = api_endpoint
         self.wallet_endpoint = wallet_endpoint
+        self.account = account
+        self.permission = permission
         self.subkey = subkey
         self.subprivatekey = subprivatekey
 
@@ -43,6 +45,8 @@ class EosClient:
         if body:
             body = json.dumps(body).encode()
         url = urllib.parse.urljoin(endpoint, uri)
+        print(url)
+        print(body)
         request = urllib.request.Request(url, data=body)
         try:
             response = urllib.request.urlopen(request)
