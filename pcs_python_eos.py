@@ -25,5 +25,5 @@ if __name__ == "__main__":
 
     #print(pcsc.wallet_endpoint)
     #print(pcsc.wallet_open())
-    #unlock = pcsc.wallet_unlock("PW5JGuJ6zYJFxcX9uKW8q2tPWaTyhJgq6EbToXga1UWf7G96RNcCR")
+    #unlock = pcsc.wallet_unlock("PW5...")
     #print(unlock)
