@@ -1,17 +1,19 @@
 from eospy.eos_client import EosClient
+from eospy.endpoints import CONTRACT
+from eospy.transaction_builder import TransactionBuilder, Action
 
 class DEXClient(EosClient):
 
-    def addsellobyid(self,sym,token_id,price,memo):
+    def addsellobyid(self,symbol,token_id,price,memo):
 
         binargs = self.chain_abi_json_to_bin({
             "code": CONTRACT, 
-            "action": "create",
+            "action": "addsellobyid",
             "args": {"sym": symbol,"token_id":token_id,"price":price,"memo":memo}
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'addsellobyid',self.account , self.permission, transfer_binargs),
+            Action(CONTRACT, 'addsellobyid', self.account , self.permission, binargs),
         ))
         return self.push_transaction(transaction, chain_id)
             
@@ -24,7 +26,7 @@ class DEXClient(EosClient):
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'buyfromorder',self.account , self.permission, transfer_binargs),
+            Action(CONTRACT, 'buyfromorder',self.account , self.permission, binargs),
         ))
         return self.push_transaction(transaction, chain_id)
             
@@ -37,7 +39,7 @@ class DEXClient(EosClient):
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'cancelsobyid',self.account , self.permission, transfer_binargs),
+            Action(CONTRACT, 'cancelsobyid',self.account , self.permission, binargs),
         ))
         return self.push_transaction(transaction, chain_id)
     
@@ -51,7 +53,7 @@ class DEXClient(EosClient):
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'cancelsello',self.account , self.permission, transfer_binargs),
+            Action(CONTRACT, 'cancelsello',self.account , self.permission, binargs),
         ))
 
         return self.push_transaction(transaction, chain_id)
@@ -65,7 +67,7 @@ class DEXClient(EosClient):
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'addbuyorder',self.account , self.permission, transfer_binargs),
+            Action(CONTRACT, 'addbuyorder',self.account , self.permission, binargs),
         ))
 
         return self.push_transaction(transaction, chain_id)
@@ -79,7 +81,7 @@ class DEXClient(EosClient):
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'selltoorder',self.account , self.permission, transfer_binargs),
+            Action(CONTRACT, 'selltoorder',self.account , self.permission, binargs),
         ))
 
         return self.push_transaction(transaction, chain_id)
@@ -93,7 +95,7 @@ class DEXClient(EosClient):
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'cancelbobyid',self.account , self.permission, transfer_binargs),
+            Action(CONTRACT, 'cancelbobyid',self.account , self.permission, binargs),
         ))
 
         return self.push_transaction(transaction, chain_id)
@@ -107,7 +109,7 @@ class DEXClient(EosClient):
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'cancelbuyo',self.account , self.permission, transfer_binargs),
+            Action(CONTRACT, 'cancelbuyo',self.account , self.permission, binargs),
         ))
 
         return self.push_transaction(transaction, chain_id)
@@ -122,7 +124,7 @@ class DEXClient(EosClient):
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'withdraw',self.account , self.permission, transfer_binargs),
+            Action(CONTRACT, 'withdraw',self.account , self.permission, binargs),
         ))
 
         return self.push_transaction(transaction, chain_id)

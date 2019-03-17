@@ -17,8 +17,11 @@ if __name__ == "__main__":
     print("======================")
     #print(pcsc.issue("leohioleohio","2 BUG","test"))
 
-    #print(pcsc.transferbyid("mokemokecore","BUG",2,"gift"))
-    print(pcsc.refreshkey("BUG",1,"EOS61ei7zBcVTJFP5PwgzPaFydVasnDgDGft6ckFRxnrpq4QNYtQB"))
+    #print(pcsc.transferbyid("mokemokecore","BUG","2,"gift"))
+    #print(pcsc.refreshkey("BUG",1,"EOS61ei7zBcVTJFP5PwgzPaFydVasnDgDGft6ckFRxnrpq4QNYtQB"))
+    #print(pcsc.addsellobyid("BUG",1,"1.0000 EOS","pls buy"))
+    print(pcsc.cancelsobyid("BUG",1,))
+
 
     #print(pcsc.wallet_endpoint)
     #print(pcsc.wallet_open())
