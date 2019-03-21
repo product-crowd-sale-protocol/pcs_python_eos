@@ -1,3 +1,4 @@
+import requests
 from eospy.eos_client import EosClient
 from check_sig import check_sig
 from eospy.endpoints import CONTRACT 
@@ -7,6 +8,8 @@ class PCSClient(EosClient):
    
     def check_security(self,symbol,tokenId):
         return check_sig.check_sig(symbol,tokenId,self.subprivatekey)
+
+    def generateKey(self,password):
                        
     def create(self,symbol,AGENT=False):
 

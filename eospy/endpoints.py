@@ -1,6 +1,7 @@
 DEFAULT_EOS_API_ENDPOINT = 'https://api.kylin.alohaeos.com' #'https://api.tokenika.io'
 
-CONTRACT = "toycashio123"
+#CONTRACT = "toycashio123"
+CONTRACT = "pcscoreprtcl"
 
 WALLET_CREATE = 'v1/wallet/create'
 WALLET_OPEN = 'v1/wallet/open'

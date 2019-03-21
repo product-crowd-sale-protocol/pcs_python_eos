@@ -15,12 +15,13 @@ if __name__ == "__main__":
     pcsc = PCS_EOS(None,"http://127.0.0.1:8888","leohioleohio","active",None,None)
     print(pcsc.chain_get_info())
     print("======================")
+    print(pcsc.create("TOY"))
     #print(pcsc.issue("leohioleohio","2 BUG","test"))
 
     #print(pcsc.transferbyid("mokemokecore","BUG","2,"gift"))
     #print(pcsc.refreshkey("BUG",1,"EOS61ei7zBcVTJFP5PwgzPaFydVasnDgDGft6ckFRxnrpq4QNYtQB"))
     #print(pcsc.addsellobyid("BUG",1,"1.0000 EOS","pls buy"))
-    print(pcsc.cancelsobyid("BUG",1,))
+    #print(pcsc.cancelsobyid("BUG",1,))
 
 
     #print(pcsc.wallet_endpoint)
