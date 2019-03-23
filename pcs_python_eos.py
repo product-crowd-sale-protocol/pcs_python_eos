@@ -1,6 +1,9 @@
 from client import PCSClient
 from dexclient import DEXClient
 
+PCS_ACCOUNT_FOR_EVERYONE = "pcseveryone1"
+PCS_PRIVETEKEY_FOR_EVERYONE = "5KiFgPfSP1fK2uUaoxDDXjNSVNksq7gkMoZKfGmQtg1vcUHkuXc"
+
 class PCS_EOS(PCSClient,DEXClient):
     pass
 
@@ -12,10 +15,10 @@ if __name__ == "__main__":
 #    response = requests.request("POST", url, headers=headers)
 #    print(response.text)
 
-    pcsc = PCS_EOS(None,"http://127.0.0.1:8888","leohioleohio","active",None,None)
+    pcsc = PCS_EOS(None,"http://127.0.0.1:8888",PCS_ACCOUNT_FOR_EVERYONE,"active",None,None)
     print(pcsc.chain_get_info())
     print("======================")
-    print(pcsc.create("TOY"))
+    print(pcsc.create("TST"))
     #print(pcsc.issue("leohioleohio","2 BUG","test"))
 
     #print(pcsc.transferbyid("mokemokecore","BUG","2,"gift"))

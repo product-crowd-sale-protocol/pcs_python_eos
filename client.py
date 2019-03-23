@@ -68,19 +68,19 @@ class PCSClient(EosClient):
         return self.push_transaction(transaction, chain_id)
 
 
-    def transferid2(self, to , symbol ,token_id , memo ):
+    def transferid2(self, to , symbol ,token_id ,sig, memo ):
 
         binargs = self.chain_abi_json_to_bin({
             "code": CONTRACT, "action": "transferbyid",
-            "args": {"from": self.account, 
-                     "to": to,
+            "args": {"to": to,
+                     "sig":sig,
                      "sym": symbol,
                      "token_id":token_id,
                      "memo":memo}
             })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
-            Action(CONTRACT, 'transferbyid',self.account, self.permission, binargs),
+            Action(CONTRACT, 'transferid2',self.account, self.permission, binargs),
         ))
         return self.push_transaction(transaction, chain_id)
 
@@ -96,7 +96,7 @@ class PCSClient(EosClient):
         ))
         return self.push_transaction(transaction, chain_id)
 
-    def issueagent(self,symbol,sig,subkey):
+    def issueagent(self,symbol,sig,subkey,memo):
         
         binargs = self.chain_abi_json_to_bin({
             "code": CONTRACT, "action": "issueagent",
