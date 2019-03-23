@@ -5,7 +5,6 @@ import json
 from . import keys
 from . import utils
 
-
 APINAME = "checkSig",
 CONTRACT = "toycashio123"
 CHAIN_ID = "5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191"
@@ -27,10 +26,14 @@ def check_sig(symbol,tokenId,privatekey):
     auth = call_check_sig_api(symbol,tokenId,sig,message)
     return auth
 
-def sign_message_with_privatekey(privatekey,message):
+def sign_message_with_privatekey(privatekey,message,isbyte=False):
 
     eoskey = keys.EOSKey(privatekey)
-    digest = utils.sha256(message.encode())
+
+    if isbyte:
+        digest = utils.sha256(message)
+    else:
+        digest = utils.sha256(message.encode())
     sign = eoskey.sign(digest)
     return sign
 

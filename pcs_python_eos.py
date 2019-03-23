@@ -17,8 +17,11 @@ if __name__ == "__main__":
 
     pcsc = PCS_EOS(None,"http://127.0.0.1:8888",PCS_ACCOUNT_FOR_EVERYONE,"active",None,None)
     print(pcsc.chain_get_info())
-    print("======================")
-    print(pcsc.create("TST"))
+    pcsc.set_keys_by_password("yarnstart","TST")
+    print(pcsc.issuetoagent("TST",pcsc.subkey,""))
+
+    #print("======================")
+    #print(pcsc.create("TST"))
     #print(pcsc.issue("leohioleohio","2 BUG","test"))
 
     #print(pcsc.transferbyid("mokemokecore","BUG","2,"gift"))
