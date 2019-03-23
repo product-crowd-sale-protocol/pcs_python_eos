@@ -15,13 +15,13 @@ class PCSClient(EosClient):
     def generateKey(password,symbol,tokenId):
         return generate_key.gen_private_key(password,symbol,tokenId)
 
-    def set_keys_by_password(self,password,symbol,tokenId=False):
+    def set_keys_by_password(self,password,symbol,tokenId=None):
 
-        #False is flag of automation. get next id automatically
-        if tokenId==False :
+        #None is flag of automation. get next id automatically
+        if tokenId==None :
             tokenId = table_client.get_token_lastid(symbol)
             print("Given ID of {0} is {1}".format(symbol,tokenId+1))
-
+            tokenId = tokenId +1
         if tokenId<-1:
             raise
 
@@ -78,7 +78,7 @@ class PCSClient(EosClient):
 
         binargs = self.chain_abi_json_to_bin({
             "code": CONTRACT, "action": "refreshkey",
-            "args": {"sym":symbol,"token_id":token_id , "subkey": new_subkey}
+            "args": {"sym":symbol,"token_id":token_id , "new_subkey": new_subkey}
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
@@ -87,15 +87,18 @@ class PCSClient(EosClient):
         return self.push_transaction(transaction, chain_id)
 
 
-    def transferid2(self, to , symbol ,token_id ,sig, memo ):
+    def transferid2(self, to , symbol ,token_id):
+
+        message = subkey_signature_in_contract("transferid2",symbol,token_id=token_id,to=to)
+        sig = check_sig.sign_message_with_privatekey(self.subprivatekey,message,True)
 
         binargs = self.chain_abi_json_to_bin({
-            "code": CONTRACT, "action": "transferbyid",
+            "code": CONTRACT, "action": "transferid2",
             "args": {"to": to,
                      "sig":sig,
                      "sym": symbol,
                      "token_id":token_id,
-                     "memo":memo}
+                     "memo":""}
             })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
@@ -105,13 +108,12 @@ class PCSClient(EosClient):
 
     def refreshkey2(self,symbol,token_id,new_subkey):
 
-        a_day = 24 * 60 * 60
-        message = str(int(datetime.datetime.now().timestamp()/a_day) *a_day* 1000)
-        sig = check_sig.sign_message_with_privatekey(self.subprivatekey,message)
+        message = subkey_signature_in_contract("refreshkey2",symbol,token_id=token_id,new_subkey=new_subkey)
+        sig = check_sig.sign_message_with_privatekey(self.subprivatekey,message,True)
 
         binargs = self.chain_abi_json_to_bin({
             "code": CONTRACT, "action": "refreshkey2",
-            "args": {"sym":symbol,"token_id":token_id , "subkey": new_subkey,"sig":sig}
+            "args": {"sym":symbol,"token_id":token_id , "new_subkey": new_subkey,"sig":sig}
         })['binargs']
 
         transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
@@ -141,8 +143,22 @@ class PCSClient(EosClient):
         ))
         return self.push_transaction(transaction, chain_id)
 
-def subkey_signature_in_contract(action, sym, token_id=None, new_subkey=None, to=None):
+    def lock(self,symbol,token_id):
+        message = subkey_signature_in_contract("lock",symbol,token_id=token_id)
+        sig = check_sig.sign_message_with_privatekey(self.subprivatekey,message,True)
 
+        binargs = self.chain_abi_json_to_bin({
+            "code": CONTRACT, "action": "lock",
+            "args": {"sym":symbol,"token_id":token_id ,"sig":sig}
+        })['binargs']
+
+        transaction, chain_id = TransactionBuilder(self).build_sign_transaction_request((
+            Action(CONTRACT, 'lock',self.account, self.permission, binargs),
+        ))
+        return self.push_transaction(transaction, chain_id)
+
+def subkey_signature_in_contract(action, sym, token_id=None, new_subkey=None, to=None):
+    print((action,sym,token_id,new_subkey,to))
     from check_sig.format import Name,SymbolCode,Uint64,public_key_to_bytes34
 
     act_bin = bytes(Name(action))
@@ -161,11 +177,11 @@ def subkey_signature_in_contract(action, sym, token_id=None, new_subkey=None, to
         id_bin = bytes(Uint64(token_id))
         message = act_bin + sym_bin + id_bin + ts_bin
     elif action == "transferid2":
-        to_bin = act_bin = bytes(Name(to))
+        to_bin =  bytes(Name(to))
         id_bin = bytes(Uint64(token_id))
         message = act_bin + to_bin + sym_bin + id_bin + ts_bin
+        print(list(message))
+        print(len(list(message)))
     else:
-        message = ""
-
-    print(len(message))
+        raise
     return message

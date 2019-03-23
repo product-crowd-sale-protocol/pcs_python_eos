@@ -15,6 +15,7 @@ def gen_private_key(password,symbol,nftId):
 
 def _get_salt(seed,symbol,nftId):
 
+    print("=====salt of {0}, tokenid : {1}".format(symbol,nftId))
     seedHash = sha256(seed.encode()).hexdigest()
     payload = {
         "hash": seedHash,
@@ -22,7 +23,11 @@ def _get_salt(seed,symbol,nftId):
         "tokenId": nftId
     };
     res = requests.post(SALT_ENDPOINT,data=json.dumps(payload),headers={ "Content-Type": "application/json"})
-    return res.json()["body"]
+    
+    body = res.json()["body"]
+    if len(body)!=64:
+        raise
+    return body
 
 def _genkey(seed):
     hex_string = sha256(seed.encode()).hexdigest()
