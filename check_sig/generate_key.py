@@ -3,6 +3,7 @@ import requests
 from hashlib import sha256
 from . import keys
 import json
+import base58
 
 SALT_ENDPOINT = "https://85z0ywf1ol.execute-api.ap-northeast-1.amazonaws.com/secretHashing0/"
 
@@ -30,4 +31,5 @@ def genkey(seed):
     eoskey = keys.EOSKey()
     eoskey._sk = priv_key
     eoskey._vk = eoskey._sk.get_verifying_key()
-    return eoskey.to_public(),priv_key.to_string()
+
+    return eoskey.to_public(),eoskey.to_wif()

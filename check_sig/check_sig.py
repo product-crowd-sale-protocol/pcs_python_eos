@@ -20,7 +20,7 @@ def check_sig(symbol,tokenId,privatekey):
     if message==global_sign.get("message"):
         sig = global_sign["sig"].get(prv)
     
-    if !sig:
+    if not sig:
         sig = sign_message_with_privatekey(privatekey,message)
         global_sign["sig"]["prv"] = sig
 
