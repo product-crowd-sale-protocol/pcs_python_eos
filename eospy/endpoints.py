@@ -1,4 +1,6 @@
-DEFAULT_EOS_API_ENDPOINT = 'https://api.kylin.alohaeos.com' #'https://api.tokenika.io'
+#DEFAULT_EOS_API_ENDPOINT = 'https://api.kylin.alohaeos.com' #'https://api.tokenika.io'
+#DEFAULT_EOS_API_ENDPOINT = 'https://api-kylin.eosasia.one:443' #'https://api.tokenika.io'
+DEFAULT_EOS_API_ENDPOINT = 'https://kylin.eoscanada.com'
 
 #CONTRACT = "toycashio123"
 CONTRACT = "pcscoreprtcl"

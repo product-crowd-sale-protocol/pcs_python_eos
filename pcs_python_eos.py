@@ -15,15 +15,19 @@ if __name__ == "__main__":
 #    response = requests.request("POST", url, headers=headers)
 #    print(response.text)
 
+    #pcsc = PCS_EOS(None,"http://127.0.0.1:8888","pcseveryone1","active",None,None)
     pcsc = PCS_EOS(None,"http://127.0.0.1:8888","pcseveryone1","active",None,None)
+    pcsc2 = PCS_EOS(None,"http://127.0.0.1:8888","pcseveryone1","active",None,None)
     #pcsc2 = PCS_EOS(None,"http://127.0.0.1:8888",PCS_ACCOUNT_FOR_EVERYONE,"active",None,None)
     #print(pcsc.chain_get_info())
     #pcsc.set_keys_by_password("yarnstart","TST",1)
 
-    pcsc.set_keys_by_password("yarnstop","TST",1)
-    pcsc.lock("TST",1)
+    pcsc.set_keys_by_password("yarnstart","TST",3)
+    #pcsc2.set_keys_by_password("yarnstart","TST",2)
+    pcsc.transferbyid("onigiri21423","TST",2,"")
+    #pcsc.lock("TST",1)
     #pcsc.transferid2(PCS_ACCOUNT_FOR_EVERYONE,"TST",1)
-    #print(pcsc.refreshkey2("TST",1,pcsc2.subkey))
+    #print(pcsc.refreshkey2("TST",1,pcsc.subkey))
     #print(pcsc.issuetoagent("TST",pcsc.subkey,""))
 
     #print("======================")

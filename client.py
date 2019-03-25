@@ -5,11 +5,27 @@ from eospy import table_client
 from check_sig import check_sig ,generate_key
 from eospy.endpoints import CONTRACT
 from eospy.transaction_builder import TransactionBuilder, Action
+import agent_client
 
 class PCSClient(EosClient):
 
     def check_security(self,symbol,tokenId):
         return check_sig.check_sig(symbol,tokenId,self.subprivatekey)
+
+    def agent_refresh_key(self,symbol,token_id,new_subkey):
+
+        message = subkey_signature_in_contract("refreshkey2",symbol,token_id=token_id,new_subkey=new_subkey)
+        sig = check_sig.sign_message_with_privatekey(self.subprivatekey,message,True) 
+        trx = agent_client.send_agent_refreshkey_order(symbol,token_id,new_subkey,sig)
+        print_tx(*trx)
+
+    def agent_transfer(self,symbol,token_id,to):
+
+        message = subkey_signature_in_contract("transferid2",symbol,token_id=token_id,to=to)
+        sig = check_sig.sign_message_with_privatekey(self.subprivatekey,message,True) 
+        trx = agent_client.send_agent_transfer_order(symbol,token_id,to,sig)
+        print_tx(*trx)
+
 
     @staticmethod
     def generateKey(password,symbol,tokenId):
@@ -26,10 +42,9 @@ class PCSClient(EosClient):
             raise
 
         pubkey,prvkey = PCSClient.generateKey(password,symbol,tokenId)
-        print(pubkey)
-        print(prvkey)
         self.subkey=pubkey
         self.subprivatekey= prvkey
+        print("===subkey set :"+self.subkey+"===")
 
     def create(self,symbol):
 
@@ -157,7 +172,9 @@ class PCSClient(EosClient):
         ))
         return self.push_transaction(transaction, chain_id)
 
+
 def subkey_signature_in_contract(action, sym, token_id=None, new_subkey=None, to=None):
+
     print((action,sym,token_id,new_subkey,to))
     from check_sig.format import Name,SymbolCode,Uint64,public_key_to_bytes34
 
@@ -180,8 +197,15 @@ def subkey_signature_in_contract(action, sym, token_id=None, new_subkey=None, to
         to_bin =  bytes(Name(to))
         id_bin = bytes(Uint64(token_id))
         message = act_bin + to_bin + sym_bin + id_bin + ts_bin
-        print(list(message))
-        print(len(list(message)))
     else:
         raise
     return message
+
+def print_tx(tx,tx_id):
+
+    tx_id = str(tx_id)
+    print("====your transaction was broadcasted====")
+    print("[NOTICE] your tx_id was "+tx_id)
+    print("[GUIDE] if you want, pls check out:  https://kylin.eosx.io/tx/"+tx_id)
+    print("========================================")
+

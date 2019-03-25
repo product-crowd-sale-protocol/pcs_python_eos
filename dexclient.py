@@ -43,7 +43,8 @@ class DEXClient(EosClient):
         ))
         return self.push_transaction(transaction, chain_id)
     
-    #quantity is assset type (like "100 EOS")       
+    #quantity is assset type (like "10.0000 EOS") 
+    #make sure 4 letters after the decimal point (1.0000)        
     def cancelsello(self,quantity):
 
         binargs = self.chain_abi_json_to_bin({
@@ -114,7 +115,8 @@ class DEXClient(EosClient):
 
         return self.push_transaction(transaction, chain_id)
 
-    #value is asset type
+    #value is assset type (like "10.0000 EOS") 
+    #make sure 4 letters after the decimal point (1.0000)        
     def withdraw(self,value, memo):
 
         binargs = self.chain_abi_json_to_bin({
