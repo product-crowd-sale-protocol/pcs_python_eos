@@ -10,30 +10,34 @@ Participants can have full control of functions below
 3. buying / selling that authorization in the exchange on a decentralized protocol
 
 ![PCS_README](https://user-images.githubusercontent.com/5285950/54953921-b871eb00-4f8c-11e9-8a4d-17ff58dd9286.jpg)
+![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
-![PCS_README (9)](https://user-images.githubusercontent.com/5285950/54955547-fbce5880-4f90-11e9-90fe-af652ce401e6.jpg)
-
+## Advanced NFT and Authorization / Login 
 ![PCS_README(1)](https://user-images.githubusercontent.com/5285950/54953914-b445cd80-4f8c-11e9-889c-4fc8b36d2ac5.jpg)
-![PCS_README (9)](https://user-images.githubusercontent.com/5285950/54955547-fbce5880-4f90-11e9-90fe-af652ce401e6.jpg)
+![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
 ![PCS_README(2)](https://user-images.githubusercontent.com/5285950/54953903-ac862900-4f8c-11e9-8ce4-6c3df7a51bfa.jpg)
-![PCS_README (9)](https://user-images.githubusercontent.com/5285950/54955547-fbce5880-4f90-11e9-90fe-af652ce401e6.jpg)
+![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
+
+## Usage and Operation on Contract
 
 ![PCS_README(3)](https://user-images.githubusercontent.com/5285950/54953884-a09a6700-4f8c-11e9-8d10-475975824556.jpg)
-![PCS_README (9)](https://user-images.githubusercontent.com/5285950/54955547-fbce5880-4f90-11e9-90fe-af652ce401e6.jpg)
+![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
 ![PCS_README(4)](https://user-images.githubusercontent.com/5285950/54953828-7f397b00-4f8c-11e9-9dca-23bbfeb8b0ce.jpg)
-![PCS_README (9)](https://user-images.githubusercontent.com/5285950/54955547-fbce5880-4f90-11e9-90fe-af652ce401e6.jpg)
+![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
+
+## Two leveled Security
 
 ![PCS_README(5)](https://user-images.githubusercontent.com/5285950/54953811-78ab0380-4f8c-11e9-9ec4-d9964a1d9858.jpg)
-![PCS_README (9)](https://user-images.githubusercontent.com/5285950/54955547-fbce5880-4f90-11e9-90fe-af652ce401e6.jpg)
+![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
 ![PCS_README(6)](https://user-images.githubusercontent.com/5285950/54953789-6a5ce780-4f8c-11e9-8a60-6a6e64acd577.jpg)
-![PCS_README (9)](https://user-images.githubusercontent.com/5285950/54955547-fbce5880-4f90-11e9-90fe-af652ce401e6.jpg)
+![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
 ## Class Relation
 ![PCS_README(8)](https://user-images.githubusercontent.com/5285950/54953761-5a450800-4f8c-11e9-8327-f335e9119be2.jpg)
-![PCS_README (9)](https://user-images.githubusercontent.com/5285950/54955547-fbce5880-4f90-11e9-90fe-af652ce401e6.jpg)
+![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
 
 ## Advanced NFT and Authorization / Login 
@@ -47,7 +51,7 @@ function. Login system does not need other functions, then building secure apps 
 
 In the process of generating keys, BlackBox is set for anti Brute Force attacks and traceability against attackers.(“Security and Safety” in detail )  
 
-# Two leveled Security
+## Two leveled Security
 
 In joining phase, users have only password or sub privatekey (without_account_without_wallet mode), only DEX uses are forbidden.
 After having an account of the chain. they can move tokens to accounts and have full safety and full control. (with_account mode)  
