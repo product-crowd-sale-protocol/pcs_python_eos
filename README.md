@@ -9,6 +9,14 @@ Participants can have full control of functions below
 2. transfering the authorization to other nodes 
 3. buying / selling that authorization in the exchange on a decentralized protocol
 
+## Fast guild 
+just type
+```
+$ python3 wakannai.py
+```
+
+# Systems
+![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 ![PCS_README](https://user-images.githubusercontent.com/5285950/54953921-b871eb00-4f8c-11e9-8a4d-17ff58dd9286.jpg)
 ![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
@@ -63,7 +71,7 @@ A client can transfer tokens and refresh subkeys with password or sub privatekey
 ## Usage with account 
 
 A client can transfer tokens and refresh subkeys with the accoun keys.
-And any contract function including DEX operation are available.
+And any contract function including DEX operation is available.
 
 ## Anti Privatekey Loss
 
@@ -77,11 +85,27 @@ When sub-privatekeys are exposed by hacking or by free riders, any honest node c
 with_account mode users can use DEX to sell / buy NFTs. (dexclient.py)
 
 
-##Dependencies
-requirements: keosd installation
+## Dependencies
+requirements: keosd installation.
+Please install cleos & keosd as a link below guides. Installing CDT is not necessaly (3~5 hours are needed). Making sure of 
+```
+$ keosd 
+``` 
+running is necessaly at least.
+The codes work when 
 
+
+```
+$ keosd --http-server-address  127.0.0.1:8888
+```
+is runnig.If no account, pcseveryone2@test is available as a rental account.
+```
+$ cleos wallet import --private-key 5KhcoSuV9vCyDY5efv7giGdpEmbyuscWfT9R3tY2dmGy9E7ZotM
+```
+
+https://developers.eos.io/eosio-home/docs/introduction
 ## When Confused
 just type
 ```
-$ python3 wakaranai.py
+$ python3 wakannai.py
 ```
