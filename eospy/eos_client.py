@@ -12,12 +12,12 @@ from .transaction_builder import TransactionBuilder, Action
 
 
 class EosClient:
-    def __init__(self, account=None, permission=None, subkey=None, subprivatekey=None, endpoint=None, wallet_endpoint=None):
+    def __init__(self, account=None, permission=None, subkey=None, subprivatekey=None, api_endpoint=None, wallet_endpoint=None):
 
         if not api_endpoint:
             api_endpoint = endpoints.DEFAULT_EOS_API_ENDPOINT
         if not wallet_endpoint:
-            api_endpoint = endpoints.DEFAULT_WALLET_ENDPOINT
+            wallet_endpoint = endpoints.DEFAULT_WALLET_ENDPOINT
             
         self.api_endpoint = api_endpoint
         self.wallet_endpoint = wallet_endpoint
@@ -38,8 +38,6 @@ class EosClient:
         if body:
             body = json.dumps(body).encode()
         url = urllib.parse.urljoin(endpoint, uri)
-        print(url)
-        print(body)
         request = urllib.request.Request(url, data=body)
         try:
             response = urllib.request.urlopen(request)

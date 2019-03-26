@@ -80,6 +80,8 @@ with_account mode provides users safety of Service Logins excepting the case of 
 
 When sub-privatekeys are exposed by hacking or by free riders, any honest node can lock the NFT and stop its functions with the sub-privatekey. (client.py : PSC_Client.lock() ) 
 
+The owner can recover its functions of locked NFT with refreshkey()
+
 ## Exchange (DEX)
 with_account mode users can use DEX to sell / buy NFTs. (dexclient.py)
 
@@ -101,6 +103,13 @@ is runnig. If no account, pcseveryone2@test is available as a rental account.
 ```
 $ cleos wallet import --private-key 5KhcoSuV9vCyDY5efv7giGdpEmbyuscWfT9R3tY2dmGy9E7ZotM
 ```
+### python requirements
+```
+$ pip install -r requirements.txt
+```
+
+## Sample Secure Apps
+https://link-airdrop.s3.amazonaws.com/index.html
 
 ## When Confused
 just type

@@ -94,7 +94,7 @@ def main():
         if desire=="X":
             print("you can take a TEST token (symbol=TST number=5~20 password=yarnstart)")
             print("Please visit this website")
-            print(" ")
+            print("https://link-airdrop.s3.amazonaws.com/index.html")
             return True
 
         print("With this middle ware protocol, devs can build secure apps easily")

@@ -18,7 +18,7 @@ class PCS_EOS(PCSClient,DEXClient):
 def recover_accountless_token(symbol,tokenId,password):
 
     pcsc = PCS_EOS()
-    pcsc.set_subkeys_by_password(password,symbol,tokenId)
+    pcsc.set_keys_by_password(password,symbol,tokenId)
     return pcsc
 
 
@@ -41,4 +41,3 @@ def create(new_symbol,account=None,permission="active"):
         pcsc = PCS_EOS(account,permission)
     pcsc.create(new_symbol)
     
-
