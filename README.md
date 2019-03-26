@@ -9,14 +9,13 @@ Participants can have full control of functions below
 2. transfering the authorization to other nodes 
 3. buying / selling that authorization in the exchange on a decentralized protocol
 
-## Fast guild 
+## Fast Guide 
 just type
 ```
 $ python3 wakannai.py
 ```
 
-# Systems
-![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
+# System
 ![PCS_README](https://user-images.githubusercontent.com/5285950/54953921-b871eb00-4f8c-11e9-8a4d-17ff58dd9286.jpg)
 ![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
@@ -27,19 +26,19 @@ $ python3 wakannai.py
 ![PCS_README(2)](https://user-images.githubusercontent.com/5285950/54953903-ac862900-4f8c-11e9-8ce4-6c3df7a51bfa.jpg)
 ![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
-## Usage and Operation on Contract
-
+## Basical Security @with_account
 ![PCS_README(3)](https://user-images.githubusercontent.com/5285950/54953884-a09a6700-4f8c-11e9-8d10-475975824556.jpg)
 ![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
+## Basical Security @without_account_without_wallet
 ![PCS_README(4)](https://user-images.githubusercontent.com/5285950/54953828-7f397b00-4f8c-11e9-9dca-23bbfeb8b0ce.jpg)
 ![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
 ## Two leveled Security
-
 ![PCS_README(5)](https://user-images.githubusercontent.com/5285950/54953811-78ab0380-4f8c-11e9-9ec4-d9964a1d9858.jpg)
 ![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
+## Anti Privatekey Loss
 ![PCS_README(6)](https://user-images.githubusercontent.com/5285950/54953789-6a5ce780-4f8c-11e9-8a60-6a6e64acd577.jpg)
 ![output-0](https://user-images.githubusercontent.com/5285950/54955939-1b19b580-4f92-11e9-8d1e-021adbca5c2c.jpg)
 
@@ -87,23 +86,22 @@ with_account mode users can use DEX to sell / buy NFTs. (dexclient.py)
 
 ## Dependencies
 requirements: keosd installation.
-Please install cleos & keosd as a link below guides. Installing CDT is not necessaly (3~5 hours are needed). Making sure of 
+https://developers.eos.io/eosio-home/docs/introduction
+Please install cleos & keosd as the link above guides. Installing CDT is not necessaly (3~5 hours are needed). Making sure of 
 ```
 $ keosd 
 ``` 
 running is necessaly at least.
 The codes work when 
 
-
 ```
 $ keosd --http-server-address  127.0.0.1:8888
 ```
-is runnig.If no account, pcseveryone2@test is available as a rental account.
+is runnig. If no account, pcseveryone2@test is available as a rental account.
 ```
 $ cleos wallet import --private-key 5KhcoSuV9vCyDY5efv7giGdpEmbyuscWfT9R3tY2dmGy9E7ZotM
 ```
 
-https://developers.eos.io/eosio-home/docs/introduction
 ## When Confused
 just type
 ```

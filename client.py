@@ -9,9 +9,11 @@ import agent_client
 
 class PCSClient(EosClient):
 
+    #without_account_without_wallet
     def check_security(self,symbol,tokenId):
         return check_sig.check_sig(symbol,tokenId,self.subprivatekey)
 
+    #without_account_without_wallet
     def agent_refresh_key(self,symbol,token_id,new_subkey):
 
         message = subkey_signature_in_contract("refreshkey2",symbol,token_id=token_id,new_subkey=new_subkey)
@@ -19,7 +21,8 @@ class PCSClient(EosClient):
         trx = agent_client.send_agent_refreshkey_order(symbol,token_id,new_subkey,sig)
         print_tx(*trx)
 
-    def agent_transfer(self,symbol,token_id,to):
+    #without_account_without_wallet
+    def agent_transfer(self,to,symbol,token_id):
 
         message = subkey_signature_in_contract("transferid2",symbol,token_id=token_id,to=to)
         sig = check_sig.sign_message_with_privatekey(self.subprivatekey,message,True) 
@@ -35,6 +38,7 @@ class PCSClient(EosClient):
 
         #None is flag of automation. get next id automatically
         if tokenId==None :
+            print("[WARNING]: tokenID automatically suggested")
             tokenId = table_client.get_token_lastid(symbol)
             print("Given ID of {0} is {1}".format(symbol,tokenId+1))
             tokenId = tokenId +1
@@ -175,13 +179,13 @@ class PCSClient(EosClient):
 
 def subkey_signature_in_contract(action, sym, token_id=None, new_subkey=None, to=None):
 
-    print((action,sym,token_id,new_subkey,to))
+    #print((action,sym,token_id,new_subkey,to))
     from check_sig.format import Name,SymbolCode,Uint64,public_key_to_bytes34
 
     act_bin = bytes(Name(action))
     sym_bin = bytes(SymbolCode(sym))
     timestamp = int(datetime.datetime.now().timestamp()) // 15 * 15 * 1000 * 1000
-    print("timestamp: {}".format(timestamp))
+    #print("timestamp: {}".format(timestamp))
     ts_bin = bytes(Uint64(timestamp))
 
     if action == "refreshkey2":

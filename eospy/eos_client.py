@@ -1,7 +1,3 @@
-"""
-HUH STUFF
-"""
-
 import json
 import logging
 import time
@@ -16,16 +12,13 @@ from .transaction_builder import TransactionBuilder, Action
 
 
 class EosClient:
-    def __init__(self, api_endpoint=None, wallet_endpoint=None,account=None,permission=None,subkey=None,subprivatekey=None):
-        '''
-        THIS IS SPARTA
+    def __init__(self, account=None, permission=None, subkey=None, subprivatekey=None, endpoint=None, wallet_endpoint=None):
 
-        :param api_endpoint:
-        :param wallet_endpoint:
-        '''
         if not api_endpoint:
             api_endpoint = endpoints.DEFAULT_EOS_API_ENDPOINT
-
+        if not wallet_endpoint:
+            api_endpoint = endpoints.DEFAULT_WALLET_ENDPOINT
+            
         self.api_endpoint = api_endpoint
         self.wallet_endpoint = wallet_endpoint
         self.account = account

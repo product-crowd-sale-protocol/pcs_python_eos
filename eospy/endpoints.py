@@ -2,6 +2,11 @@
 #DEFAULT_EOS_API_ENDPOINT = 'https://api-kylin.eosasia.one:443' #'https://api.tokenika.io'
 DEFAULT_EOS_API_ENDPOINT = 'https://kylin.eoscanada.com'
 
+DEFAULT_WALLET_ENDPOINT = "http://127.0.0.1:8888"
+
+PCS_ACCOUNT_FOR_EVERYONE = "pcseveryone2"
+PCS_PRIVETEKEY_FOR_EVERYONE = "5KhcoSuV9vCyDY5efv7giGdpEmbyuscWfT9R3tY2dmGy9E7ZotM"
+
 #CONTRACT = "toycashio123"
 CONTRACT = "pcscoreprtcl"
 

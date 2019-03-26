@@ -1,46 +1,44 @@
 from client import PCSClient
 from dexclient import DEXClient
+from eospy.endpoints import *
 
-PCS_ACCOUNT_FOR_EVERYONE = "pcseveryone1"
-PCS_PRIVETEKEY_FOR_EVERYONE = "5KiFgPfSP1fK2uUaoxDDXjNSVNksq7gkMoZKfGmQtg1vcUHkuXc"
+"""
+one instance of this class is 
+basically binded to one PCS-NFT token
+"""
 
 class PCS_EOS(PCSClient,DEXClient):
+
     pass
+    """
+    init is in eospy/eos_client
+    def __init__(self, api_endpoint,wallet_endpoint,account,permission,subkey,subprivatekey)
+    """
 
-if __name__ == "__main__":
+def recover_accountless_token(symbol,tokenId,password):
 
-#    import requests
-#    url = "http://127.0.0.1:8888/v1/wallet/open"
-#    headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-#    response = requests.request("POST", url, headers=headers)
-#    print(response.text)
-
-    #pcsc = PCS_EOS(None,"http://127.0.0.1:8888","pcseveryone1","active",None,None)
-    pcsc = PCS_EOS(None,"http://127.0.0.1:8888","pcseveryone1","active",None,None)
-    pcsc2 = PCS_EOS(None,"http://127.0.0.1:8888","pcseveryone1","active",None,None)
-    #pcsc2 = PCS_EOS(None,"http://127.0.0.1:8888",PCS_ACCOUNT_FOR_EVERYONE,"active",None,None)
-    #print(pcsc.chain_get_info())
-    #pcsc.set_keys_by_password("yarnstart","TST",1)
-
-    pcsc.set_keys_by_password("yarnstart","TST",3)
-    #pcsc2.set_keys_by_password("yarnstart","TST",2)
-    pcsc.transferbyid("onigiri21423","TST",2,"")
-    #pcsc.lock("TST",1)
-    #pcsc.transferid2(PCS_ACCOUNT_FOR_EVERYONE,"TST",1)
-    #print(pcsc.refreshkey2("TST",1,pcsc.subkey))
-    #print(pcsc.issuetoagent("TST",pcsc.subkey,""))
-
-    #print("======================")
-    #print(pcsc.create("TST"))
-    #print(pcsc.issue("leohioleohio","2 BUG","test"))
-
-    #print(pcsc.transferbyid("mokemokecore","BUG","2,"gift"))
-    #print(pcsc.refreshkey("BUG",1,"EOS61ei7zBcVTJFP5PwgzPaFydVasnDgDGft6ckFRxnrpq4QNYtQB"))
-    #print(pcsc.addsellobyid("BUG",1,"1.0000 EOS","pls buy"))
-    #print(pcsc.cancelsobyid("BUG",1,))
+    pcsc = PCS_EOS()
+    pcsc.set_subkeys_by_password(password,symbol,tokenId)
+    return pcsc
 
 
-    #print(pcsc.wallet_endpoint)
-    #print(pcsc.wallet_open())
-    #unlock = pcsc.wallet_unlock("PW5...")
-    #print(unlock)
+def test_check_sig(symbol,tokenId,password):
+    pcsc = recover_accountless_token(symbol,tokenId,password)
+    result = pcsc.check_security(symbol,tokenId)
+    if result["verify"]:
+        print("verified")
+    else:
+        print("rejected")
+    return result["verify"]
+
+
+def create(new_symbol,account=None,permission="active"):
+
+    print("making new token symbol: " +new_symbol)
+    if not account:
+        pcsc = PCS_EOS("pcseveryone2","test")
+    else:
+        pcsc = PCS_EOS(account,permission)
+    pcsc.create(new_symbol)
+    
+
