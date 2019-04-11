@@ -7,9 +7,10 @@ from . import utils
 from hashlib import sha256
 
 APINAME = "checkSig",
-CONTRACT = "toycashio123"
+CONTRACT = "pcscoreprtcl" #"toycashio123"
 CHAIN_ID = "5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191"
-API_URL = "https://2u1ebl117d.execute-api.ap-northeast-1.amazonaws.com/pcs_api_beta/ryodansecurity"
+API_URL = "https://78qy7hxmjd.execute-api.ap-northeast-1.amazonaws.com/pcsSecurity/pcssecurity"
+#"https://2u1ebl117d.execute-api.ap-northeast-1.amazonaws.com/pcs_api_beta/ryodansecurity"
 
 
 def check_sig(symbol,tokenId,privatekey):
