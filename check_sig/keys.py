@@ -181,19 +181,4 @@ class EOSKey :
         return 'SIG_K1_' + self._check_encode(hexlify(sigstr), 'K1').decode()
 
     def verify(self, encoded_sig, digest) :
-        ''' '''
-        # remove SIG_ prefix
-        encoded_sig = encoded_sig[4:]
-        # remove curve prefix
-        curvePre = encoded_sig[:3].strip('_')
-        if curvePre != 'K1' :
-            raise TypeError('Unsupported curve prefix {}'.format(curvePre))
-
-        decoded_sig = self._check_decode(encoded_sig[3:], curvePre)
-        # first 2 bytes are recover param
-        recover_param = hex_to_int(decoded_sig[:2]) - 4 - 27
-        # use sig
-        sig = decoded_sig[2:]
-        # verify sig
-        p = self._recover_key(unhexlify(digest), unhexlify(sig), recover_param)
-        return p.verify_digest(unhexlify(sig), unhexlify(digest), sigdecode=ecdsa.util.sigdecode_string)
+        pass
